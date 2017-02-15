@@ -3,6 +3,7 @@ package com.codenation.java.pdg;
 import com.codenation.java.pdg.decomposition.cfg.CFG;
 import com.codenation.java.pdg.util.FileUtil;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.IfStatement;
 
 import java.io.File;
 import java.io.IOException;

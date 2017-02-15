@@ -6,84 +6,74 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatementExtractor {
-	private StatementInstanceChecker instanceChecker;
-	
-	public List<Statement> getConstructorInvocations(Statement statement) {
-		instanceChecker = new InstanceOfConstructorInvocation();
-		return getStatements(statement);
-	}
-	
-	public List<Statement> getVariableDeclarationStatements(Statement statement) {
-		instanceChecker = new InstanceOfVariableDeclarationStatement();
-		return getStatements(statement);
-	}
-	
-	public List<Statement> getBranchingStatements(Statement statement) {
-		instanceChecker = new InstanceOfBranchingStatement();
-		return getStatements(statement);
-	}
-	
-	public List<Statement> getTryStatements(Statement statement) {
-		instanceChecker = new InstanceOfTryStatement();
-		return getStatements(statement);
-	}
-	
-	public List<Statement> getSwitchStatements(Statement statement) {
-		instanceChecker = new InstanceOfSwitchStatement();
-		return getStatements(statement);
-	}
-	
-	public List<Statement> getIfStatements(Statement statement) {
-		instanceChecker = new InstanceOfIfStatement();
-		return getStatements(statement);
-	}
-	
-	public List<Statement> getReturnStatements(Statement statement) {
-		instanceChecker = new InstanceOfReturnStatement();
+	private InstanceType instanceChecker;
+
+	public List<Statement> getVariableDeclarationStatements(ASTNode statement) {
+		instanceChecker = InstanceType.VARIABLE_DECLARATION_STATEMENT;
 		return getStatements(statement);
 	}
 
-	public List<Statement> getBreakStatements(Statement statement) {
-		instanceChecker = new InstanceOfBreakStatement();
-		return getStatements(statement);
-	}
-
-	public List<Statement> getContinueStatements(Statement statement) {
-		instanceChecker = new InstanceOfContinueStatement();
+	public List<Statement> getTryStatements(ASTNode statement) {
+		instanceChecker = InstanceType.TRY_STATEMENT;
 		return getStatements(statement);
 	}
 	
-	public List<Statement> getEnhancedForStatements(Statement statement) {
-		instanceChecker = new InstanceOfEnhancedForStatement();
+	public List<Statement> getSwitchStatements(ASTNode statement) {
+		instanceChecker = InstanceType.SWITCH_STATEMENT;
+		return getStatements(statement);
+	}
+	
+	public List<Statement> getIfStatements(ASTNode statement) {
+		instanceChecker = InstanceType.IF_STATEMENT;
+		return getStatements(statement);
+	}
+	
+	public List<Statement> getReturnStatements(ASTNode statement) {
+		instanceChecker = InstanceType.RETURN_STATEMENT;
 		return getStatements(statement);
 	}
 
-	public List<Statement> getForStatements(Statement statement) {
-		instanceChecker = new InstanceOfForStatement();
+	public List<Statement> getBreakStatements(ASTNode statement) {
+		instanceChecker = InstanceType.BREAK_STATEMENT;
 		return getStatements(statement);
 	}
 
-	public List<Statement> getWhileStatements(Statement statement) {
-		instanceChecker = new InstanceOfWhileStatement();
+	public List<Statement> getContinueStatements(ASTNode statement) {
+		instanceChecker = InstanceType.CONTINUE_STATEMENT;
+		return getStatements(statement);
+	}
+	
+	public List<Statement> getEnhancedForStatements(ASTNode statement) {
+		instanceChecker = InstanceType.ENHANCED_FOR_STATEMENT;
 		return getStatements(statement);
 	}
 
-	public List<Statement> getDoStatements(Statement statement) {
-		instanceChecker = new InstanceOfDoStatement();
+	public List<Statement> getForStatements(ASTNode statement) {
+		instanceChecker = InstanceType.FOR_STATEMENT;
 		return getStatements(statement);
 	}
 
-    public List<Statement> getThrowsStatement(Statement statement) {
-        instanceChecker = new InstanceOfThrowsStatement();
+	public List<Statement> getWhileStatements(ASTNode statement) {
+		instanceChecker = InstanceType.WHILE_STATEMENT;
+		return getStatements(statement);
+	}
+
+	public List<Statement> getDoStatements(ASTNode statement) {
+		instanceChecker = InstanceType.DO_STATEMENT;
+		return getStatements(statement);
+	}
+
+    public List<Statement> getThrowsStatement(ASTNode statement) {
+        instanceChecker = InstanceType.THROWS_STATEMENT;
         return getStatements(statement);
     }
 
-	public List<Statement> getTypeDeclarationStatements(Statement statement) {
-		instanceChecker = new InstanceOfTypeDeclarationStatement();
+	public List<Statement> getTypeDeclarationStatements(ASTNode statement) {
+		instanceChecker = InstanceType.TYPE_DECLARATION_STATEMENT;
 		return getStatements(statement);
 	}
 	
-	private List<Statement> getStatements(Statement statement) {
+	private List<Statement> getStatements(ASTNode statement) {
 		List<Statement> statementList = new ArrayList<>();
 		if(statement instanceof Block) {
 			Block block = (Block)statement;
